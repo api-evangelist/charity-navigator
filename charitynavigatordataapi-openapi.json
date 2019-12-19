@@ -1,0 +1,1346 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "version": "",
+        "title": "CharityNavigatorDataAPI",
+        "description": "The Charity Navigator Data API provides access to Charity Navigator's\nratings, research content and charitable organization profiles.",
+        "termsOfService": ""
+    },
+    "servers": [
+        "httpsapi.data.charitynavigator.org\/v2"
+    ],
+    "paths": {
+        "\/Organizations": {
+            "get": {
+                "summary": "Get Organizations",
+                "description": "Retrieve a list of the organizations available in the Charity Navigator Data\nStore. Allows paged retrieval, simple and advanced searching.",
+                "operationId": "SearchOrganizations",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "app_id",
+                        "in": "query",
+                        "description": "3Scale App ID: unique identifier for an application registered in the\nCharity Navigator  developer portal."
+                    },
+                    {
+                        "name": "app_key",
+                        "in": "query",
+                        "description": "3Scale App Key: a secret key to authenticate the assigned App ID."
+                    },
+                    {
+                        "name": "pageSize",
+                        "in": "query",
+                        "description": "Number of organizations to return in a single response message. Used in\ncombination with `pageNum` for paged responses. Default value is 100.  If\nspecified, must be an integer value between 1 and 1,000."
+                    },
+                    {
+                        "name": "pageNum",
+                        "in": "query",
+                        "description": "Page number to return, in case the number of available objects in the result\nset is greater than the specified or default `pageSize`. Default value is 1.\nIf the value of pageNum is greater than the number of pages in the result set,\nthe method will return a 404 error. If the requested starting position, computed\nas `((pageNum-1) * pageSize) + 1`, is greater than the maximum supported result\nsize of 10,000 objects, the method will return a 400 error."
+                    },
+                    {
+                        "name": "search",
+                        "in": "query",
+                        "description": "A simple search string that narrows the results to organizations matching\nthe specified search terms. This is a relevance-driven search, not an exact\nmatch. Whitespace-separated terms in the search string are combined using AND\nlogic, so adding terms has the effect of narrowing the search.\nBy default, the search looks for matches in all string or text properties. The\nsearchType parameter can change the field values included in the search."
+                    },
+                    {
+                        "name": "searchType",
+                        "in": "query",
+                        "description": "Used in combination with the `search` parameter, specifies the type of\nsearch to be performed.\n\n| Value     | Search Behavior                       |\n| --------- | ------------------------------------- |\n| DEFAULT   | Search in all string properties.      |\n| NAME_ONLY | Search only in the Organization name. |\n\nOmitting the searchType parameter has the same effect as specifying \"DEFAULT\".\n\nAny value other than the ones specified in the table above will cause an HTTP\n400 error response."
+                    },
+                    {
+                        "name": "rated",
+                        "in": "query",
+                        "description": "Specifies whether to include only rated charities or unrated charities. By\ndefault, all charities will be returned.\n\nCan be specified as `TRUE` or `FALSE`, `0` or `1`, or included without a value,\nwhich is equivalent to `TRUE` or `1`.\n\n| Usage | Search Behavior |\n| --- | --- |\n| `rated=TRUE`<br\/>`rated=1`<br\/>`rated` | Return only rated charities. |\n| `rated=FALSE`<br\/>`rated=0` | Return only unrated charities. |\n| (default) | Return all charities. |\n\nAny value other than the ones specified in t"
+                    },
+                    {
+                        "name": "categoryID",
+                        "in": "query",
+                        "description": "ID of a Category. Search results will be filtered to include only\norganizations in the specified category."
+                    },
+                    {
+                        "name": "causeID",
+                        "in": "query",
+                        "description": "ID of a Cause. Search results will be filtered to include only organizations\nin the specified cause."
+                    },
+                    {
+                        "name": "fundraisingOrgs",
+                        "in": "query",
+                        "description": "Specifies whether to include or exclude organizations flagged by Charity\nNavigator as fundraising organizations. By default, all charities will be\nreturned.<br\/> [Learn\nMore](javascript:openBrWindow('http:\/\/www.charitynavigator.org\/index.cfm?bay=glossary.word&gid=95&print=1','glossary','scrollbars=yes,width=760,height=400')\n\nCan be specified as `TRUE` or `FALSE`, `0` or `1`, or included without a value,\nwhich is equivalent to `TRUE` or `1`.\n\nNote that a charity that has a \"Moderate\" or \"High\" Se"
+                    },
+                    {
+                        "name": "state",
+                        "in": "query",
+                        "description": "If set to a valid 2-letter state code (not case-sensitive), filters search\nresults to include only organizations in the specified state. An invalid state\ncode will respond with a 400 error."
+                    },
+                    {
+                        "name": "city",
+                        "in": "query",
+                        "description": "Filters search results to include only organizations in cities whose names\nmatch the specified string. This uses fuzzy matching, and the city name may be\ngiven as a partial string."
+                    },
+                    {
+                        "name": "zip",
+                        "in": "query",
+                        "description": "Filters search results to include only organizations in the specified zip\ncode."
+                    },
+                    {
+                        "name": "minRating",
+                        "in": "query",
+                        "description": "Filters search results to include only organizations with a rating greater\nthan or equal to the specified value. Must be an integer value betwen 0 and 4,\ninclusive. Must be less than or equal to maxRating, if specified."
+                    },
+                    {
+                        "name": "maxRating",
+                        "in": "query",
+                        "description": "Filters search results to include only organizations with a rating less than\nor equal to the specified value. Must be an integer value betwen 0 and 4,\ninclusive. Must be greater than or equal to minRating, if specified."
+                    },
+                    {
+                        "name": "sizeRange",
+                        "in": "query",
+                        "description": "Filters search results to include only organizations within a given size\nbracket, as measured in annual Total Expenses. possible values include:\n\n| Value | Range             |\n| ----- | ----------------- |\n| 1     | Up to $3.5MM      |\n| 2     | $3.5MM to $13.5MM |\n| 3     | $13.5MM and up    |\n"
+                    },
+                    {
+                        "name": "donorPrivacy",
+                        "in": "query",
+                        "description": "Specifies whether to include or exclude organizations that have a donor\nprivacy policy.  By default, all charities are included, regardless of donor\nprivacy policy.\n\nCan be specified as `TRUE` or `FALSE`, `0` or `1`, or included without a value,\nwhich is equivalent to `TRUE` or `1`.\n\n| Usage | Search Behavior |\n| --- | --- |\n| `donorPrivacy=TRUE`<br\/>`donorPrivacy=1`<br\/>`donorPrivacy` | Return only organizations that have a donor privacy policy. |\n| `donorPrivacy=FALSE`<br\/>`donorPrivacy=0` | R"
+                    },
+                    {
+                        "name": "scopeOfWork",
+                        "in": "query",
+                        "description": "Filters search results to include only organizations with a given scope of\nwork. Possible values are \"ALL\" (the default), \"REGIONAL\", \"NATIONAL\", or\n\"INTERNATIONAL\""
+                    },
+                    {
+                        "name": "cfcCharities",
+                        "in": "query",
+                        "description": "Specifies whether to include or exclude organizations that are included in\nthe Combined Federal Campaign, the largest workplace giving campaign in USA. By\ndefault, all organizations are included.<br\/> [Learn\nMore](https:\/\/www.charitynavigator.org\/index.cfm?bay=glossary.word&word=CFC&print=1.)\n\nCan be specified as `TRUE` or `FALSE`, `0` or `1`, or included without a value,\nwhich is equivalent to `TRUE` or `1`.\n\n| Usage | Search Behavior |\n| --- | --- |\n| `cfcCharities=TRUE`<br\/>`cfcCharities=1`<b"
+                    },
+                    {
+                        "name": "noGovSupport",
+                        "in": "query",
+                        "description": "Specifies whether to include or exclude organizations that do not receive\ngovernment support. By default, all organizations are included.\n\nCan be specified as `TRUE` or `FALSE`, `0` or `1`, or included without a value,\nwhich is equivalent to `TRUE` or `1`.\n\n| Usage | Search Behavior |\n| --- | --- |\n| `noGovSupport=TRUE`<br\/>`noGovSupport=1`<br\/>`noGovSupport` | Return only charities that do not receive government support. |\n| `noGovSupport=FALSE`<br\/>`noGovSupport=0` | Return only charities that"
+                    },
+                    {
+                        "name": "sort",
+                        "in": "query",
+                        "description": "Specifies how results should be sorted. By default, results are sorted by\nincreasing `ein` value unless a `search` string is specified, in which case\nresults are sorted by decreasing relevance to the search string.\n\nThis parameter takes the form of a sort property and an optional direction\nindicator, separated by a colon. E.g. `NAME` or `NAME:ASC`.\n\nSort property can be any of the following (examples indicate default direction):\n\n| Property | Example | Sort Behavior |\n| ----- | ------- | -------"
+                    }
+                ]
+            }
+        },
+        "\/Organizations\/{ein}": {
+            "get": {
+                "summary": "Get Organizations Ein",
+                "description": "Retrieve full detail of a single Organization. This is a composite set of\ninformation describing an organization that may engage in charitable work.\nNormally the Organization data structure includes a single legal entity, though\nlegal entity information may be excluded in exceptional cases.",
+                "operationId": "GetOrganization",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "ein",
+                        "in": "path",
+                        "description": ""
+                    },
+                    {
+                        "name": "app_id",
+                        "in": "query",
+                        "description": "3Scale App ID: unique identifier for an application registered in the\nCharity Navigator  developer portal."
+                    },
+                    {
+                        "name": "app_key",
+                        "in": "query",
+                        "description": "3Scale App Key: a secret key to authenticate the assigned App ID."
+                    }
+                ]
+            }
+        },
+        "\/Organizations\/{ein}\/Ratings": {
+            "get": {
+                "summary": "Get Organizations Ein Ratings",
+                "description": "Retrieve all Charity Navigator ratings for a single organization. <br\/>\n![Content\nSubscription](https:\/\/cdn2.hubspot.net\/hubfs\/597611\/CharityNavigator\/FA-Data-Table-16.png\n\"Included with the paid Content Subscription.\")",
+                "operationId": "GetRatings",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "ein",
+                        "in": "path",
+                        "description": ""
+                    },
+                    {
+                        "name": "app_id",
+                        "in": "query",
+                        "description": "3Scale App ID: unique identifier for an application registered in the\nCharity Navigator  developer portal."
+                    },
+                    {
+                        "name": "app_key",
+                        "in": "query",
+                        "description": "3Scale App Key: a secret key to authenticate the assigned App ID."
+                    },
+                    {
+                        "name": "pageSize",
+                        "in": "query",
+                        "description": "Number of organizations to return in a single response message. Used in\ncombination with `pageNum` for paged responses. Default value is 100.  If\nspecified, must be an integer value between 1 and 1,000."
+                    },
+                    {
+                        "name": "pageNum",
+                        "in": "query",
+                        "description": "Page number to return, in case the number of available objects in the result\nset is greater than the specified or default `pageSize`. Default value is 1.\nIf the value of pageNum is greater than the number of pages in the result set,\nthe method will return a 404 error. If the requested starting position, computed\nas `((pageNum-1) * pageSize) + 1`, is greater than the maximum supported result\nsize of 10,000 objects, the method will return a 400 error."
+                    }
+                ]
+            }
+        },
+        "\/Organizations\/{ein}\/Ratings\/{RatingID}": {
+            "get": {
+                "summary": "Get Organizations Ein Ratings Rating",
+                "description": "Retrieve a single Rating object for an Organization. Each rating is listed\nonce, under its primary `referenceOrganization`. Note that the rating may apply\nto other organizations, and this is represented by `includedOrganizations`,\nwhich is a collection of hyperlinks to all of the organizations to which the\nrating applies.\nThe rating is a point-in-time assessment provided by Charity Navigator, along\nwith related metrics and ratios taken from financial statements for a fiscal\nyear, on which the ra",
+                "operationId": "GetRating",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "ein",
+                        "in": "path",
+                        "description": ""
+                    },
+                    {
+                        "name": "RatingID",
+                        "in": "path",
+                        "description": ""
+                    },
+                    {
+                        "name": "app_id",
+                        "in": "query",
+                        "description": "3Scale App ID: unique identifier for an application registered in the\nCharity Navigator  developer portal."
+                    },
+                    {
+                        "name": "app_key",
+                        "in": "query",
+                        "description": "3Scale App Key: a secret key to authenticate the assigned App ID."
+                    }
+                ]
+            }
+        },
+        "\/Organizations\/{ein}\/Advisories": {
+            "get": {
+                "summary": "Get Organizations Ein Advisories",
+                "description": "Retrieve the full set of Charity Navigator advisories for a specified\norganization. An advisory is a cautionary communication from Charity Navigator,\nadvising of unusual events or behavior related to a known organization.",
+                "operationId": "GetAdvisories",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "ein",
+                        "in": "path",
+                        "description": ""
+                    },
+                    {
+                        "name": "app_id",
+                        "in": "query",
+                        "description": "3Scale App ID: unique identifier for an application registered in the\nCharity Navigator  developer portal."
+                    },
+                    {
+                        "name": "app_key",
+                        "in": "query",
+                        "description": "3Scale App Key: a secret key to authenticate the assigned App ID."
+                    },
+                    {
+                        "name": "pageSize",
+                        "in": "query",
+                        "description": "Number of organizations to return in a single response message. Used in\ncombination with `pageNum` for paged responses. Default value is 100.  If\nspecified, must be an integer value between 1 and 1,000."
+                    },
+                    {
+                        "name": "pageNum",
+                        "in": "query",
+                        "description": "Page number to return, in case the number of available objects in the result\nset is greater than the specified or default `pageSize`. Default value is 1.\nIf the value of pageNum is greater than the number of pages in the result set,\nthe method will return a 404 error. If the requested starting position, computed\nas `((pageNum-1) * pageSize) + 1`, is greater than the maximum supported result\nsize of 10,000 objects, the method will return a 400 error."
+                    },
+                    {
+                        "name": "status",
+                        "in": "query",
+                        "description": "An optional filter parameter to limit the Advisories returned, based on\nstatus:\n\n| Status Value | Advisories Included                                 |\n| ------------ | --------------------------------------------------- |\n| ALL | All advisories included, regardless of status.      |\n| ACTIVE       | Includes only advisories that are currently active. |\n| REMOVED      | Includes only advisories that have been removed.    |\n\nOmitting the status property is the equivalent of specifying ALL. Any va"
+                    }
+                ]
+            }
+        },
+        "\/Organizations\/{ein}\/Advisories\/{AdvisoryID}": {
+            "get": {
+                "summary": "Get Organizations Ein Advisories Advisory",
+                "description": "Retrieve full details of a single Advisory, under a given organization. An\nadvisory is a cautionary communication from Charity Navigator, advising of\nunusual events or behavior related to a known organization.",
+                "operationId": "GetAdvisory",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "ein",
+                        "in": "path",
+                        "description": ""
+                    },
+                    {
+                        "name": "AdvisoryID",
+                        "in": "path",
+                        "description": ""
+                    },
+                    {
+                        "name": "app_id",
+                        "in": "query",
+                        "description": "3Scale App ID: unique identifier for an application registered in the\nCharity Navigator  developer portal."
+                    },
+                    {
+                        "name": "app_key",
+                        "in": "query",
+                        "description": "3Scale App Key: a secret key to authenticate the assigned App ID."
+                    }
+                ]
+            }
+        },
+        "\/Lists": {
+            "get": {
+                "summary": "Get Lists",
+                "description": "Retrieve a set of Lists defined in Charity Navigator. Each entry in this\ncollection is a curated or generated list of organizations, published by Charity\nNavigator. <br\/> ![Content\nSubscription](https:\/\/cdn2.hubspot.net\/hubfs\/597611\/CharityNavigator\/FA-Data-Table-16.png\n\"Included with the paid Content Subscription.\")",
+                "operationId": "GetLists",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "app_id",
+                        "in": "query",
+                        "description": "3Scale App ID: unique identifier for an application registered in the\nCharity Navigator  developer portal."
+                    },
+                    {
+                        "name": "app_key",
+                        "in": "query",
+                        "description": "3Scale App Key: a secret key to authenticate the assigned App ID."
+                    },
+                    {
+                        "name": "pageSize",
+                        "in": "query",
+                        "description": "Number of organizations to return in a single response message. Used in\ncombination with `pageNum` for paged responses. Default value is 100.  If\nspecified, must be an integer value between 1 and 1,000."
+                    },
+                    {
+                        "name": "pageNum",
+                        "in": "query",
+                        "description": "Page number to return, in case the number of available objects in the result\nset is greater than the specified or default `pageSize`. Default value is 1.\nIf the value of pageNum is greater than the number of pages in the result set,\nthe method will return a 404 error. If the requested starting position, computed\nas `((pageNum-1) * pageSize) + 1`, is greater than the maximum supported result\nsize of 10,000 objects, the method will return a 400 error."
+                    }
+                ]
+            }
+        },
+        "\/Lists\/{ListID}": {
+            "get": {
+                "summary": "Get Lists List",
+                "description": "Retrieve a curated or generated list of organizations, published by Charity\nNavigator. <br\/> ![Content\nSubscription](https:\/\/cdn2.hubspot.net\/hubfs\/597611\/CharityNavigator\/FA-Data-Table-16.png\n\"Included with the paid Content Subscription.\")",
+                "operationId": "GetList",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "ListID",
+                        "in": "path",
+                        "description": ""
+                    },
+                    {
+                        "name": "app_id",
+                        "in": "query",
+                        "description": "3Scale App ID: unique identifier for an application registered in the\nCharity Navigator  developer portal."
+                    },
+                    {
+                        "name": "app_key",
+                        "in": "query",
+                        "description": "3Scale App Key: a secret key to authenticate the assigned App ID."
+                    }
+                ]
+            }
+        },
+        "\/Categories": {
+            "get": {
+                "summary": "Get Categories",
+                "description": "Returns metadata for Charity Navigator's classification hierarchy for\ncharitable Organizations. Category is the top-level classifier, and each\ncategory may contain a number of Causes. <br\/> ![Content\nSubscription](https:\/\/cdn2.hubspot.net\/hubfs\/597611\/CharityNavigator\/FA-Data-Table-16.png\n\"Included with the paid Content Subscription.\")",
+                "operationId": "GetCategories",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "app_id",
+                        "in": "query",
+                        "description": "3Scale App ID: unique identifier for an application registered in the\nCharity Navigator  developer portal."
+                    },
+                    {
+                        "name": "app_key",
+                        "in": "query",
+                        "description": "3Scale App Key: a secret key to authenticate the assigned App ID."
+                    }
+                ]
+            }
+        },
+        "\/Advisory": {
+            "get": {
+                "summary": "Get Advisory",
+                "description": "Retrieve the full set of Charity Navigator advisories for a specified\norganization. An advisory is a cautionary communication from Charity Navigator,\nadvising of unusual events or behavior related to a known organization.",
+                "operationId": "GetAllActiveAdvisories",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "app_id",
+                        "in": "query",
+                        "description": "3Scale App ID: unique identifier for an application registered in the\nCharity Navigator  developer portal."
+                    },
+                    {
+                        "name": "app_key",
+                        "in": "query",
+                        "description": "3Scale App Key: a secret key to authenticate the assigned App ID."
+                    },
+                    {
+                        "name": "pageSize",
+                        "in": "query",
+                        "description": "Number of organizations to return in a single response message. Used in\ncombination with `pageNum` for paged responses. Default value is 100.  If\nspecified, must be an integer value between 1 and 1,000."
+                    },
+                    {
+                        "name": "pageNum",
+                        "in": "query",
+                        "description": "Page number to return, in case the number of available objects in the result\nset is greater than the specified or default `pageSize`. Default value is 1.\nIf the value of pageNum is greater than the number of pages in the result set,\nthe method will return a 404 error. If the requested starting position, computed\nas `((pageNum-1) * pageSize) + 1`, is greater than the maximum supported result\nsize of 10,000 objects, the method will return a 400 error."
+                    }
+                ]
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "OrganizationCollection_item": {
+                "type": "object",
+                "properties": {
+                    "ein": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "orgID": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "charityName": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "tagLine": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "websiteURL": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "charityNavigatorURL": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "mission": {
+                        "description": "",
+                        "type": "get"
+                    }
+                }
+            },
+            "OrganizationCollection_currentRating": {
+                "type": "object",
+                "properties": {
+                    "ratingID": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "score": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "rating": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "publicationDate": {
+                        "description": "",
+                        "type": "get"
+                    }
+                }
+            },
+            "OrganizationCollection_currentRating_financialRating": {
+                "type": "object",
+                "properties": {
+                    "score": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "rating": {
+                        "description": "",
+                        "type": "get"
+                    }
+                }
+            },
+            "OrganizationCollection_currentRating_accountabilityRating": {
+                "type": "object",
+                "properties": {
+                    "score": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "rating": {
+                        "description": "",
+                        "type": "get"
+                    }
+                }
+            },
+            "IconSet": {
+                "type": "object",
+                "properties": {
+                    "small": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "large": {
+                        "description": "",
+                        "type": "get"
+                    }
+                }
+            },
+            "OrganizationCollection_category": {
+                "type": "object",
+                "properties": {
+                    "categoryID": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "categoryName": {
+                        "description": "",
+                        "type": "get"
+                    }
+                }
+            },
+            "OrganizationCollection_cause": {
+                "type": "object",
+                "properties": {
+                    "causeID": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "causeName": {
+                        "description": "",
+                        "type": "get"
+                    }
+                }
+            },
+            "OrganizationCollection_irsClassification": {
+                "type": "object",
+                "properties": {
+                    "subsection": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "foundationStatus": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "deductibilityDetail": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "nteeCode": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "nteeClassification": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "nteeLetter": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "nteeType": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "nteeSuffix": {
+                        "description": "",
+                        "type": "get"
+                    }
+                }
+            },
+            "OrganizationCollection_mailingAddress": {
+                "type": "object",
+                "properties": {
+                    "streetAddress1": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "streetAddress2": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "city": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "stateOrProvince": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "postalCode": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "country": {
+                        "description": "",
+                        "type": "get"
+                    }
+                }
+            },
+            "OrganizationCollection_donationAddress": {
+                "type": "object",
+                "properties": {
+                    "streetAddress1": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "streetAddress2": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "city": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "stateOrProvince": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "postalCode": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "country": {
+                        "description": "",
+                        "type": "get"
+                    }
+                }
+            },
+            "OrganizationCollection_advisories": {
+                "type": "object"
+            },
+            "AdvisoryCollection_link": {
+                "type": "object"
+            },
+            "OrganizationLink": {
+                "type": "object",
+                "properties": {
+                    "ein": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "charityName": {
+                        "description": "",
+                        "type": "get"
+                    }
+                }
+            },
+            "OrganizationObject": {
+                "type": "object",
+                "properties": {
+                    "ein": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "orgID": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "charityName": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "tagLine": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "websiteURL": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "charityNavigatorURL": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "mission": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "phoneNumber": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "generalEmail": {
+                        "description": "",
+                        "type": "get"
+                    }
+                }
+            },
+            "OrganizationObject_category": {
+                "type": "object",
+                "properties": {
+                    "categoryID": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "categoryName": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "image": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "charityNavigatorURL": {
+                        "description": "",
+                        "type": "get"
+                    }
+                }
+            },
+            "OrganizationObject_cause": {
+                "type": "object",
+                "properties": {
+                    "causeID": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "causeName": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "image": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "charityNavigatorURL": {
+                        "description": "",
+                        "type": "get"
+                    }
+                }
+            },
+            "IRSClassification": {
+                "type": "object",
+                "properties": {
+                    "subsection": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "foundationStatus": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "deductibilityDetail": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "nteeCode": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "nteeClassification": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "nteeLetter": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "nteeType": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "nteeSuffix": {
+                        "description": "",
+                        "type": "get"
+                    }
+                }
+            },
+            "Address": {
+                "type": "object",
+                "properties": {
+                    "streetAddress1": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "streetAddress2": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "city": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "stateOrProvince": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "postalCode": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "country": {
+                        "description": "",
+                        "type": "get"
+                    }
+                }
+            },
+            "Representative": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "title": {
+                        "description": "",
+                        "type": "get"
+                    }
+                }
+            },
+            "ratingLink": {
+                "type": "object",
+                "properties": {
+                    "ratingID": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "score": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "rating": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "publicationDate": {
+                        "description": "",
+                        "type": "get"
+                    }
+                }
+            },
+            "RatingCollection_link": {
+                "type": "object"
+            },
+            "RatingObject": {
+                "type": "object",
+                "properties": {
+                    "ratingID": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "score": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "rating": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "publicationDate": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "includedOrganizations": {
+                        "description": "",
+                        "type": "get"
+                    }
+                }
+            },
+            "Form990": {
+                "type": "object",
+                "properties": {
+                    "fundraisingExpenses": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "administrativeExpenses": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "programExpenses": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "totalExpenses": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "totalRevenue": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "totalNetAssets": {
+                        "description": "",
+                        "type": "get"
+                    }
+                }
+            },
+            "FinancialRating": {
+                "type": "object",
+                "properties": {
+                    "score": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "rating": {
+                        "description": "",
+                        "type": "get"
+                    }
+                }
+            },
+            "PerformanceMetrics": {
+                "type": "object",
+                "properties": {
+                    "fundraisingEfficiency": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "fundraisingExpensesRatio": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "programExpensesGrowth": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "programExpensesRatio": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "administrationExpensesRatio": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "liabilitiesToAssetsRatio": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "workingCapitalRatio": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "primaryRevenueGrowth": {
+                        "description": "",
+                        "type": "get"
+                    }
+                }
+            },
+            "AccountabilityRating": {
+                "type": "object",
+                "properties": {
+                    "score": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "rating": {
+                        "description": "",
+                        "type": "get"
+                    }
+                }
+            },
+            "AccountabilityTests": {
+                "type": "object"
+            },
+            "AdvisoryCollection_item": {
+                "type": "object",
+                "properties": {
+                    "advisoryID": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "datePublished": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "dateRemoved": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "dateModified": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "sources": {
+                        "description": "",
+                        "type": "get"
+                    }
+                }
+            },
+            "AdvisorySource": {
+                "type": "object",
+                "properties": {
+                    "datePublished": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "dateRemoved": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "dateModified": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "publisher": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "url": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "summary": {
+                        "description": "",
+                        "type": "get"
+                    }
+                }
+            },
+            "Advisory": {
+                "type": "object",
+                "properties": {
+                    "advisoryID": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "datePublished": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "dateRemoved": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "dateModified": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "sources": {
+                        "description": "",
+                        "type": "get"
+                    }
+                }
+            },
+            "ListObjectLink": {
+                "type": "object",
+                "properties": {
+                    "listID": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "listName": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "listType": {
+                        "description": "",
+                        "type": "get"
+                    }
+                }
+            },
+            "List": {
+                "type": "object",
+                "properties": {
+                    "listID": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "listName": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "listType": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "description": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "image": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "charityNavigatorURL": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "groups": {
+                        "description": "",
+                        "type": "get"
+                    }
+                }
+            },
+            "OrganizationGroup": {
+                "type": "object",
+                "properties": {
+                    "groupName": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "groupDescription": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "organizations": {
+                        "description": "",
+                        "type": "get"
+                    }
+                }
+            },
+            "OrgListEntry": {
+                "type": "object",
+                "properties": {
+                    "rank": {
+                        "description": "",
+                        "type": "get"
+                    }
+                }
+            },
+            "Category": {
+                "type": "object",
+                "properties": {
+                    "categoryID": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "categoryName": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "image": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "charityNavigatorURL": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "causes": {
+                        "description": "",
+                        "type": "get"
+                    }
+                }
+            },
+            "Cause": {
+                "type": "object",
+                "properties": {
+                    "causeID": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "causeName": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "image": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "charityNavigatorURL": {
+                        "description": "",
+                        "type": "get"
+                    }
+                }
+            },
+            "ActiveAdvisoryCollection_item": {
+                "type": "object",
+                "properties": {
+                    "charityName": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "charityNavigatorURL": {
+                        "description": "",
+                        "type": "get"
+                    }
+                }
+            },
+            "ActiveAdvisoryCollection_mailingAddress": {
+                "type": "object",
+                "properties": {
+                    "city": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "stateOrProvince": {
+                        "description": "",
+                        "type": "get"
+                    }
+                }
+            },
+            "ActiveAdvisoryCollection_organization": {
+                "type": "object",
+                "properties": {
+                    "ein": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "charityName": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "charityNavigatorURL": {
+                        "description": "",
+                        "type": "get"
+                    }
+                }
+            },
+            "AdvisoryRollup": {
+                "type": "object"
+            },
+            "OrganizationCollection_searchOrganizations_response400": {
+                "type": "object",
+                "properties": {
+                    "errorMessage": {
+                        "description": "",
+                        "type": "get"
+                    }
+                }
+            },
+            "OrganizationCollection_searchOrganizations_response404": {
+                "type": "object",
+                "properties": {
+                    "errorMessage": {
+                        "description": "",
+                        "type": "get"
+                    }
+                }
+            },
+            "OrganizationObject_getOrganization_response400": {
+                "type": "object",
+                "properties": {
+                    "errorMessage": {
+                        "description": "",
+                        "type": "get"
+                    }
+                }
+            },
+            "OrganizationObject_getOrganization_response404": {
+                "type": "object",
+                "properties": {
+                    "errorMessage": {
+                        "description": "",
+                        "type": "get"
+                    }
+                }
+            },
+            "RatingCollection_getRatings_response400": {
+                "type": "object",
+                "properties": {
+                    "errorMessage": {
+                        "description": "",
+                        "type": "get"
+                    }
+                }
+            },
+            "RatingCollection_getRatings_response404": {
+                "type": "object",
+                "properties": {
+                    "errorMessage": {
+                        "description": "",
+                        "type": "get"
+                    }
+                }
+            },
+            "RatingObject_getRating_response400": {
+                "type": "object",
+                "properties": {
+                    "errorMessage": {
+                        "description": "",
+                        "type": "get"
+                    }
+                }
+            },
+            "RatingObject_getRating_response404": {
+                "type": "object",
+                "properties": {
+                    "errorMessage": {
+                        "description": "",
+                        "type": "get"
+                    }
+                }
+            },
+            "AdvisoryCollection_getAdvisories_response400": {
+                "type": "object",
+                "properties": {
+                    "errorMessage": {
+                        "description": "",
+                        "type": "get"
+                    }
+                }
+            },
+            "AdvisoryCollection_getAdvisories_response404": {
+                "type": "object",
+                "properties": {
+                    "errorMessage": {
+                        "description": "",
+                        "type": "get"
+                    }
+                }
+            },
+            "AdvisoryObject_getAdvisory_response400": {
+                "type": "object",
+                "properties": {
+                    "errorMessage": {
+                        "description": "",
+                        "type": "get"
+                    }
+                }
+            },
+            "AdvisoryObject_getAdvisory_response404": {
+                "type": "object",
+                "properties": {
+                    "errorMessage": {
+                        "description": "",
+                        "type": "get"
+                    }
+                }
+            },
+            "ListCollection_getLists_response400": {
+                "type": "object",
+                "properties": {
+                    "errorMessage": {
+                        "description": "",
+                        "type": "get"
+                    }
+                }
+            },
+            "ListCollection_getLists_response404": {
+                "type": "object",
+                "properties": {
+                    "errorMessage": {
+                        "description": "",
+                        "type": "get"
+                    }
+                }
+            },
+            "ListObject_getList_response400": {
+                "type": "object",
+                "properties": {
+                    "errorMessage": {
+                        "description": "",
+                        "type": "get"
+                    }
+                }
+            },
+            "ListObject_getList_response404": {
+                "type": "object",
+                "properties": {
+                    "errorMessage": {
+                        "description": "",
+                        "type": "get"
+                    }
+                }
+            },
+            "ActiveAdvisoryCollection_getAllActiveAdvisories_response400": {
+                "type": "object",
+                "properties": {
+                    "errorMessage": {
+                        "description": "",
+                        "type": "get"
+                    }
+                }
+            },
+            "ActiveAdvisoryCollection_getAllActiveAdvisories_response404": {
+                "type": "object",
+                "properties": {
+                    "errorMessage": {
+                        "description": "",
+                        "type": "get"
+                    }
+                }
+            }
+        }
+    }
+}
