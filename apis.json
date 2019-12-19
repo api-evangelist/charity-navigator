@@ -1,0 +1,82 @@
+{
+    "name": "Charity Navigator",
+    "description": "Charity Navigator is an American independent charity watchdog organization that evaluates charitable organizations in the United States.",
+    "image": "http:\/\/kinlane-productions.s3.amazonaws.com\/screen-capture-api\/28893-www-charitynavigator-org.jpg",
+    "tags": [
+        "charities",
+        "general data",
+        "giving",
+        "have api"
+    ],
+    "created": "2019-12-19",
+    "modified": "2019-12-19",
+    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/charity-navigator\/master\/apis.json",
+    "specificationVersion": "0.14",
+    "apis": [
+        {
+            "name": "CharityNavigatorDataAPI",
+            "description": null,
+            "image": "http:\/\/kinlane-productions.s3.amazonaws.com\/screen-capture-api\/28893-www-charitynavigator-org.jpg",
+            "humanURL": "http:\/\/www.charitynavigator.org",
+            "baseURL": "",
+            "tags": [],
+            "properties": [
+                {
+                    "type": "x-openapi",
+                    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/1forge\/master\/charitynavigatordataapi-openapi.json"
+                },
+                {
+                    "type": "x-openapi",
+                    "url": "http:\/\/kinlane-productions.s3.amazonaws.com\/api-evangelist-site\/company\/openapis\/charitynavigatordataapi.json"
+                }
+            ]
+        }
+    ],
+    "include": [],
+    "x-common": [
+        {
+            "type": "Blog RSS",
+            "url": "http:\/\/blog.charitynavigator.org\/feeds\/posts\/default?alt=rss"
+        },
+        {
+            "type": "Developers",
+            "url": "https:\/\/charity.3scale.net\/"
+        },
+        {
+            "type": "Documentation",
+            "url": "https:\/\/charity.3scale.net\/docs\/data-api\/reference"
+        },
+        {
+            "type": "Github",
+            "url": "https:\/\/github.com\/CharityNavigator"
+        },
+        {
+            "type": "Support",
+            "url": "https:\/\/charity.3scale.net\/support"
+        },
+        {
+            "type": "Website",
+            "url": "http:\/\/www.charitynavigator.org"
+        },
+        {
+            "type": "Blog",
+            "url": "http:\/\/blog.charitynavigator.org\/"
+        },
+        {
+            "type": "Crunchbase",
+            "url": "https:\/\/crunchbase.com\/organization\/charity-navigator"
+        },
+        {
+            "type": "Email",
+            "url": "helpandsupport@charitynavigator.org"
+        },
+        {
+            "type": "Twitter",
+            "url": "https:\/\/twitter.com\/CharityNav"
+        },
+        {
+            "type": "Website",
+            "url": "https:\/\/www.charitynavigator.org"
+        }
+    ]
+}
