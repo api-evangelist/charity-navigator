@@ -1,0 +1,645 @@
+{
+    "id": "ec980a8abad3d7ba44fd5fef1b80ae81",
+    "name": "CharityNavigatorDataAPI",
+    "description": null,
+    "auth": null,
+    "events": null,
+    "variables": [],
+    "order": [],
+    "folders_order": [],
+    "folders": [],
+    "requests": [
+        {
+            "id": "2b79170752116d922fd38c852439d1bc",
+            "name": "Get Organizations",
+            "url": "httpsapi.data.charitynavigator.org\/v2\/Organizations",
+            "description": "Retrieve a list of the organizations available in the Charity Navigator Data\nStore. Allows paged retrieval, simple and advanced searching.",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "get",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "app_id",
+                    "description": "3Scale App ID: unique identifier for an application registered in the\nCharity Navigator  developer portal.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "app_key",
+                    "description": "3Scale App Key: a secret key to authenticate the assigned App ID.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "pageSize",
+                    "description": "Number of organizations to return in a single response message. Used in\ncombination with `pageNum` for paged responses. Default value is 100.  If\nspecified, must be an integer value between 1 and 1,000.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "pageNum",
+                    "description": "Page number to return, in case the number of available objects in the result\nset is greater than the specified or default `pageSize`. Default value is 1.\nIf the value of pageNum is greater than the number of pages in the result set,\nthe method will return a 404 error. If the requested starting position, computed\nas `((pageNum-1) * pageSize) + 1`, is greater than the maximum supported result\nsize of 10,000 objects, the method will return a 400 error.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "search",
+                    "description": "A simple search string that narrows the results to organizations matching\nthe specified search terms. This is a relevance-driven search, not an exact\nmatch. Whitespace-separated terms in the search string are combined using AND\nlogic, so adding terms has the effect of narrowing the search.\nBy default, the search looks for matches in all string or text properties. The\nsearchType parameter can change the field values included in the search.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "searchType",
+                    "description": "Used in combination with the `search` parameter, specifies the type of\nsearch to be performed.\n\n| Value     | Search Behavior                       |\n| --------- | ------------------------------------- |\n| DEFAULT   | Search in all string properties.      |\n| NAME_ONLY | Search only in the Organization name. |\n\nOmitting the searchType parameter has the same effect as specifying \"DEFAULT\".\n\nAny value other than the ones specified in the table above will cause an HTTP\n400 error response.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "rated",
+                    "description": "Specifies whether to include only rated charities or unrated charities. By\ndefault, all charities will be returned.\n\nCan be specified as `TRUE` or `FALSE`, `0` or `1`, or included without a value,\nwhich is equivalent to `TRUE` or `1`.\n\n| Usage | Search Behavior |\n| --- | --- |\n| `rated=TRUE`<br\/>`rated=1`<br\/>`rated` | Return only rated charities. |\n| `rated=FALSE`<br\/>`rated=0` | Return only unrated charities. |\n| (default) | Return all charities. |\n\nAny value other than the ones specified in t",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "categoryID",
+                    "description": "ID of a Category. Search results will be filtered to include only\norganizations in the specified category.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "causeID",
+                    "description": "ID of a Cause. Search results will be filtered to include only organizations\nin the specified cause.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "fundraisingOrgs",
+                    "description": "Specifies whether to include or exclude organizations flagged by Charity\nNavigator as fundraising organizations. By default, all charities will be\nreturned.<br\/> [Learn\nMore](javascript:openBrWindow('http:\/\/www.charitynavigator.org\/index.cfm?bay=glossary.word&gid=95&print=1','glossary','scrollbars=yes,width=760,height=400')\n\nCan be specified as `TRUE` or `FALSE`, `0` or `1`, or included without a value,\nwhich is equivalent to `TRUE` or `1`.\n\nNote that a charity that has a \"Moderate\" or \"High\" Se",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "state",
+                    "description": "If set to a valid 2-letter state code (not case-sensitive), filters search\nresults to include only organizations in the specified state. An invalid state\ncode will respond with a 400 error.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "city",
+                    "description": "Filters search results to include only organizations in cities whose names\nmatch the specified string. This uses fuzzy matching, and the city name may be\ngiven as a partial string.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "zip",
+                    "description": "Filters search results to include only organizations in the specified zip\ncode.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "minRating",
+                    "description": "Filters search results to include only organizations with a rating greater\nthan or equal to the specified value. Must be an integer value betwen 0 and 4,\ninclusive. Must be less than or equal to maxRating, if specified.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "maxRating",
+                    "description": "Filters search results to include only organizations with a rating less than\nor equal to the specified value. Must be an integer value betwen 0 and 4,\ninclusive. Must be greater than or equal to minRating, if specified.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "sizeRange",
+                    "description": "Filters search results to include only organizations within a given size\nbracket, as measured in annual Total Expenses. possible values include:\n\n| Value | Range             |\n| ----- | ----------------- |\n| 1     | Up to $3.5MM      |\n| 2     | $3.5MM to $13.5MM |\n| 3     | $13.5MM and up    |\n",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "donorPrivacy",
+                    "description": "Specifies whether to include or exclude organizations that have a donor\nprivacy policy.  By default, all charities are included, regardless of donor\nprivacy policy.\n\nCan be specified as `TRUE` or `FALSE`, `0` or `1`, or included without a value,\nwhich is equivalent to `TRUE` or `1`.\n\n| Usage | Search Behavior |\n| --- | --- |\n| `donorPrivacy=TRUE`<br\/>`donorPrivacy=1`<br\/>`donorPrivacy` | Return only organizations that have a donor privacy policy. |\n| `donorPrivacy=FALSE`<br\/>`donorPrivacy=0` | R",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "scopeOfWork",
+                    "description": "Filters search results to include only organizations with a given scope of\nwork. Possible values are \"ALL\" (the default), \"REGIONAL\", \"NATIONAL\", or\n\"INTERNATIONAL\"",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "cfcCharities",
+                    "description": "Specifies whether to include or exclude organizations that are included in\nthe Combined Federal Campaign, the largest workplace giving campaign in USA. By\ndefault, all organizations are included.<br\/> [Learn\nMore](https:\/\/www.charitynavigator.org\/index.cfm?bay=glossary.word&word=CFC&print=1.)\n\nCan be specified as `TRUE` or `FALSE`, `0` or `1`, or included without a value,\nwhich is equivalent to `TRUE` or `1`.\n\n| Usage | Search Behavior |\n| --- | --- |\n| `cfcCharities=TRUE`<br\/>`cfcCharities=1`<b",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "noGovSupport",
+                    "description": "Specifies whether to include or exclude organizations that do not receive\ngovernment support. By default, all organizations are included.\n\nCan be specified as `TRUE` or `FALSE`, `0` or `1`, or included without a value,\nwhich is equivalent to `TRUE` or `1`.\n\n| Usage | Search Behavior |\n| --- | --- |\n| `noGovSupport=TRUE`<br\/>`noGovSupport=1`<br\/>`noGovSupport` | Return only charities that do not receive government support. |\n| `noGovSupport=FALSE`<br\/>`noGovSupport=0` | Return only charities that",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "sort",
+                    "description": "Specifies how results should be sorted. By default, results are sorted by\nincreasing `ein` value unless a `search` string is specified, in which case\nresults are sorted by decreasing relevance to the search string.\n\nThis parameter takes the form of a sort property and an optional direction\nindicator, separated by a colon. E.g. `NAME` or `NAME:ASC`.\n\nSort property can be any of the following (examples indicate default direction):\n\n| Property | Example | Sort Behavior |\n| ----- | ------- | -------",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "ec980a8abad3d7ba44fd5fef1b80ae81",
+            "rawModeData": ""
+        },
+        {
+            "id": "8ecd0fef4e1a43b654cc8673f9d47400",
+            "name": "Get Organizations Ein",
+            "url": "httpsapi.data.charitynavigator.org\/v2\/Organizations\/{ein}",
+            "description": "Retrieve full detail of a single Organization. This is a composite set of\ninformation describing an organization that may engage in charitable work.\nNormally the Organization data structure includes a single legal entity, though\nlegal entity information may be excluded in exceptional cases.",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "get",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "ein",
+                    "description": "",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "app_id",
+                    "description": "3Scale App ID: unique identifier for an application registered in the\nCharity Navigator  developer portal.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "app_key",
+                    "description": "3Scale App Key: a secret key to authenticate the assigned App ID.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "ec980a8abad3d7ba44fd5fef1b80ae81",
+            "rawModeData": ""
+        },
+        {
+            "id": "3d81add081b3a6c21e9cb17396b16e3c",
+            "name": "Get Organizations Ein Ratings",
+            "url": "httpsapi.data.charitynavigator.org\/v2\/Organizations\/{ein}\/Ratings",
+            "description": "Retrieve all Charity Navigator ratings for a single organization. <br\/>\n![Content\nSubscription](https:\/\/cdn2.hubspot.net\/hubfs\/597611\/CharityNavigator\/FA-Data-Table-16.png\n\"Included with the paid Content Subscription.\")",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "get",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "ein",
+                    "description": "",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "app_id",
+                    "description": "3Scale App ID: unique identifier for an application registered in the\nCharity Navigator  developer portal.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "app_key",
+                    "description": "3Scale App Key: a secret key to authenticate the assigned App ID.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "pageSize",
+                    "description": "Number of organizations to return in a single response message. Used in\ncombination with `pageNum` for paged responses. Default value is 100.  If\nspecified, must be an integer value between 1 and 1,000.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "pageNum",
+                    "description": "Page number to return, in case the number of available objects in the result\nset is greater than the specified or default `pageSize`. Default value is 1.\nIf the value of pageNum is greater than the number of pages in the result set,\nthe method will return a 404 error. If the requested starting position, computed\nas `((pageNum-1) * pageSize) + 1`, is greater than the maximum supported result\nsize of 10,000 objects, the method will return a 400 error.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "ec980a8abad3d7ba44fd5fef1b80ae81",
+            "rawModeData": ""
+        },
+        {
+            "id": "7eac98409e5f776e5988f103b59e682a",
+            "name": "Get Organizations Ein Ratings Rating",
+            "url": "httpsapi.data.charitynavigator.org\/v2\/Organizations\/{ein}\/Ratings\/{RatingID}",
+            "description": "Retrieve a single Rating object for an Organization. Each rating is listed\nonce, under its primary `referenceOrganization`. Note that the rating may apply\nto other organizations, and this is represented by `includedOrganizations`,\nwhich is a collection of hyperlinks to all of the organizations to which the\nrating applies.\nThe rating is a point-in-time assessment provided by Charity Navigator, along\nwith related metrics and ratios taken from financial statements for a fiscal\nyear, on which the ra",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "get",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "ein",
+                    "description": "",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "RatingID",
+                    "description": "",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "app_id",
+                    "description": "3Scale App ID: unique identifier for an application registered in the\nCharity Navigator  developer portal.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "app_key",
+                    "description": "3Scale App Key: a secret key to authenticate the assigned App ID.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "ec980a8abad3d7ba44fd5fef1b80ae81",
+            "rawModeData": ""
+        },
+        {
+            "id": "dd33ccf0697cabb3cf4caf2574db5f77",
+            "name": "Get Organizations Ein Advisories",
+            "url": "httpsapi.data.charitynavigator.org\/v2\/Organizations\/{ein}\/Advisories",
+            "description": "Retrieve the full set of Charity Navigator advisories for a specified\norganization. An advisory is a cautionary communication from Charity Navigator,\nadvising of unusual events or behavior related to a known organization.",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "get",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "ein",
+                    "description": "",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "app_id",
+                    "description": "3Scale App ID: unique identifier for an application registered in the\nCharity Navigator  developer portal.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "app_key",
+                    "description": "3Scale App Key: a secret key to authenticate the assigned App ID.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "pageSize",
+                    "description": "Number of organizations to return in a single response message. Used in\ncombination with `pageNum` for paged responses. Default value is 100.  If\nspecified, must be an integer value between 1 and 1,000.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "pageNum",
+                    "description": "Page number to return, in case the number of available objects in the result\nset is greater than the specified or default `pageSize`. Default value is 1.\nIf the value of pageNum is greater than the number of pages in the result set,\nthe method will return a 404 error. If the requested starting position, computed\nas `((pageNum-1) * pageSize) + 1`, is greater than the maximum supported result\nsize of 10,000 objects, the method will return a 400 error.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "status",
+                    "description": "An optional filter parameter to limit the Advisories returned, based on\nstatus:\n\n| Status Value | Advisories Included                                 |\n| ------------ | --------------------------------------------------- |\n| ALL | All advisories included, regardless of status.      |\n| ACTIVE       | Includes only advisories that are currently active. |\n| REMOVED      | Includes only advisories that have been removed.    |\n\nOmitting the status property is the equivalent of specifying ALL. Any va",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "ec980a8abad3d7ba44fd5fef1b80ae81",
+            "rawModeData": ""
+        },
+        {
+            "id": "3f78b473a7511ba62457ff0cdee6aaa3",
+            "name": "Get Organizations Ein Advisories Advisory",
+            "url": "httpsapi.data.charitynavigator.org\/v2\/Organizations\/{ein}\/Advisories\/{AdvisoryID}",
+            "description": "Retrieve full details of a single Advisory, under a given organization. An\nadvisory is a cautionary communication from Charity Navigator, advising of\nunusual events or behavior related to a known organization.",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "get",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "ein",
+                    "description": "",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "AdvisoryID",
+                    "description": "",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "app_id",
+                    "description": "3Scale App ID: unique identifier for an application registered in the\nCharity Navigator  developer portal.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "app_key",
+                    "description": "3Scale App Key: a secret key to authenticate the assigned App ID.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "ec980a8abad3d7ba44fd5fef1b80ae81",
+            "rawModeData": ""
+        },
+        {
+            "id": "07d5a0108e49230a1fb5a7265ddd3fe6",
+            "name": "Get Lists",
+            "url": "httpsapi.data.charitynavigator.org\/v2\/Lists",
+            "description": "Retrieve a set of Lists defined in Charity Navigator. Each entry in this\ncollection is a curated or generated list of organizations, published by Charity\nNavigator. <br\/> ![Content\nSubscription](https:\/\/cdn2.hubspot.net\/hubfs\/597611\/CharityNavigator\/FA-Data-Table-16.png\n\"Included with the paid Content Subscription.\")",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "get",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "app_id",
+                    "description": "3Scale App ID: unique identifier for an application registered in the\nCharity Navigator  developer portal.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "app_key",
+                    "description": "3Scale App Key: a secret key to authenticate the assigned App ID.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "pageSize",
+                    "description": "Number of organizations to return in a single response message. Used in\ncombination with `pageNum` for paged responses. Default value is 100.  If\nspecified, must be an integer value between 1 and 1,000.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "pageNum",
+                    "description": "Page number to return, in case the number of available objects in the result\nset is greater than the specified or default `pageSize`. Default value is 1.\nIf the value of pageNum is greater than the number of pages in the result set,\nthe method will return a 404 error. If the requested starting position, computed\nas `((pageNum-1) * pageSize) + 1`, is greater than the maximum supported result\nsize of 10,000 objects, the method will return a 400 error.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "ec980a8abad3d7ba44fd5fef1b80ae81",
+            "rawModeData": ""
+        },
+        {
+            "id": "b63a190f90c83ef048787f9f01d91778",
+            "name": "Get Lists List",
+            "url": "httpsapi.data.charitynavigator.org\/v2\/Lists\/{ListID}",
+            "description": "Retrieve a curated or generated list of organizations, published by Charity\nNavigator. <br\/> ![Content\nSubscription](https:\/\/cdn2.hubspot.net\/hubfs\/597611\/CharityNavigator\/FA-Data-Table-16.png\n\"Included with the paid Content Subscription.\")",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "get",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "ListID",
+                    "description": "",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "app_id",
+                    "description": "3Scale App ID: unique identifier for an application registered in the\nCharity Navigator  developer portal.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "app_key",
+                    "description": "3Scale App Key: a secret key to authenticate the assigned App ID.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "ec980a8abad3d7ba44fd5fef1b80ae81",
+            "rawModeData": ""
+        },
+        {
+            "id": "ff3db7427b7e8aa41ec871ccb54161c8",
+            "name": "Get Categories",
+            "url": "httpsapi.data.charitynavigator.org\/v2\/Categories",
+            "description": "Returns metadata for Charity Navigator's classification hierarchy for\ncharitable Organizations. Category is the top-level classifier, and each\ncategory may contain a number of Causes. <br\/> ![Content\nSubscription](https:\/\/cdn2.hubspot.net\/hubfs\/597611\/CharityNavigator\/FA-Data-Table-16.png\n\"Included with the paid Content Subscription.\")",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "get",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "app_id",
+                    "description": "3Scale App ID: unique identifier for an application registered in the\nCharity Navigator  developer portal.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "app_key",
+                    "description": "3Scale App Key: a secret key to authenticate the assigned App ID.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "ec980a8abad3d7ba44fd5fef1b80ae81",
+            "rawModeData": ""
+        },
+        {
+            "id": "601239e231e9a5ce3291213d423704a3",
+            "name": "Get Advisory",
+            "url": "httpsapi.data.charitynavigator.org\/v2\/Advisory",
+            "description": "Retrieve the full set of Charity Navigator advisories for a specified\norganization. An advisory is a cautionary communication from Charity Navigator,\nadvising of unusual events or behavior related to a known organization.",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "get",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "app_id",
+                    "description": "3Scale App ID: unique identifier for an application registered in the\nCharity Navigator  developer portal.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "app_key",
+                    "description": "3Scale App Key: a secret key to authenticate the assigned App ID.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "pageSize",
+                    "description": "Number of organizations to return in a single response message. Used in\ncombination with `pageNum` for paged responses. Default value is 100.  If\nspecified, must be an integer value between 1 and 1,000.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "pageNum",
+                    "description": "Page number to return, in case the number of available objects in the result\nset is greater than the specified or default `pageSize`. Default value is 1.\nIf the value of pageNum is greater than the number of pages in the result set,\nthe method will return a 404 error. If the requested starting position, computed\nas `((pageNum-1) * pageSize) + 1`, is greater than the maximum supported result\nsize of 10,000 objects, the method will return a 400 error.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "ec980a8abad3d7ba44fd5fef1b80ae81",
+            "rawModeData": ""
+        }
+    ]
+}
