@@ -1,5 +1,5 @@
 {
-    "id": "ec980a8abad3d7ba44fd5fef1b80ae81",
+    "id": "daa60cc016586d8ef6f24e5eacb32c17",
     "name": "CharityNavigatorDataAPI",
     "description": null,
     "auth": null,
@@ -10,7 +10,7 @@
     "folders": [],
     "requests": [
         {
-            "id": "2b79170752116d922fd38c852439d1bc",
+            "id": "2e95a8faf98dc1aeb22f4d14d2a33993",
             "name": "Get Organizations",
             "url": "httpsapi.data.charitynavigator.org\/v2\/Organizations",
             "description": "Retrieve a list of the organizations available in the Charity Navigator Data\nStore. Allows paged retrieval, simple and advanced searching.",
@@ -177,11 +177,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "ec980a8abad3d7ba44fd5fef1b80ae81",
+            "collectionId": "daa60cc016586d8ef6f24e5eacb32c17",
             "rawModeData": ""
         },
         {
-            "id": "8ecd0fef4e1a43b654cc8673f9d47400",
+            "id": "11160a7a29ca4de6181bf10f5a2c360c",
             "name": "Get Organizations Ein",
             "url": "httpsapi.data.charitynavigator.org\/v2\/Organizations\/{ein}",
             "description": "Retrieve full detail of a single Organization. This is a composite set of\ninformation describing an organization that may engage in charitable work.\nNormally the Organization data structure includes a single legal entity, though\nlegal entity information may be excluded in exceptional cases.",
@@ -222,11 +222,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "ec980a8abad3d7ba44fd5fef1b80ae81",
+            "collectionId": "daa60cc016586d8ef6f24e5eacb32c17",
             "rawModeData": ""
         },
         {
-            "id": "3d81add081b3a6c21e9cb17396b16e3c",
+            "id": "0a2708ed9b85a00dbd20e9dc7a398676",
             "name": "Get Organizations Ein Ratings",
             "url": "httpsapi.data.charitynavigator.org\/v2\/Organizations\/{ein}\/Ratings",
             "description": "Retrieve all Charity Navigator ratings for a single organization. <br\/>\n![Content\nSubscription](https:\/\/cdn2.hubspot.net\/hubfs\/597611\/CharityNavigator\/FA-Data-Table-16.png\n\"Included with the paid Content Subscription.\")",
@@ -281,11 +281,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "ec980a8abad3d7ba44fd5fef1b80ae81",
+            "collectionId": "daa60cc016586d8ef6f24e5eacb32c17",
             "rawModeData": ""
         },
         {
-            "id": "7eac98409e5f776e5988f103b59e682a",
+            "id": "447301b554d066da07598321232366c3",
             "name": "Get Organizations Ein Ratings Rating",
             "url": "httpsapi.data.charitynavigator.org\/v2\/Organizations\/{ein}\/Ratings\/{RatingID}",
             "description": "Retrieve a single Rating object for an Organization. Each rating is listed\nonce, under its primary `referenceOrganization`. Note that the rating may apply\nto other organizations, and this is represented by `includedOrganizations`,\nwhich is a collection of hyperlinks to all of the organizations to which the\nrating applies.\nThe rating is a point-in-time assessment provided by Charity Navigator, along\nwith related metrics and ratios taken from financial statements for a fiscal\nyear, on which the ra",
@@ -333,11 +333,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "ec980a8abad3d7ba44fd5fef1b80ae81",
+            "collectionId": "daa60cc016586d8ef6f24e5eacb32c17",
             "rawModeData": ""
         },
         {
-            "id": "dd33ccf0697cabb3cf4caf2574db5f77",
+            "id": "969f2076a95e33f8c5e1e9c1bc50e37f",
             "name": "Get Organizations Ein Advisories",
             "url": "httpsapi.data.charitynavigator.org\/v2\/Organizations\/{ein}\/Advisories",
             "description": "Retrieve the full set of Charity Navigator advisories for a specified\norganization. An advisory is a cautionary communication from Charity Navigator,\nadvising of unusual events or behavior related to a known organization.",
@@ -399,11 +399,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "ec980a8abad3d7ba44fd5fef1b80ae81",
+            "collectionId": "daa60cc016586d8ef6f24e5eacb32c17",
             "rawModeData": ""
         },
         {
-            "id": "3f78b473a7511ba62457ff0cdee6aaa3",
+            "id": "0b103036e6fe3ea5656e0fe0f71e2b61",
             "name": "Get Organizations Ein Advisories Advisory",
             "url": "httpsapi.data.charitynavigator.org\/v2\/Organizations\/{ein}\/Advisories\/{AdvisoryID}",
             "description": "Retrieve full details of a single Advisory, under a given organization. An\nadvisory is a cautionary communication from Charity Navigator, advising of\nunusual events or behavior related to a known organization.",
@@ -451,11 +451,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "ec980a8abad3d7ba44fd5fef1b80ae81",
+            "collectionId": "daa60cc016586d8ef6f24e5eacb32c17",
             "rawModeData": ""
         },
         {
-            "id": "07d5a0108e49230a1fb5a7265ddd3fe6",
+            "id": "5a2ca73600db631cfd365b7b7d7599d6",
             "name": "Get Lists",
             "url": "httpsapi.data.charitynavigator.org\/v2\/Lists",
             "description": "Retrieve a set of Lists defined in Charity Navigator. Each entry in this\ncollection is a curated or generated list of organizations, published by Charity\nNavigator. <br\/> ![Content\nSubscription](https:\/\/cdn2.hubspot.net\/hubfs\/597611\/CharityNavigator\/FA-Data-Table-16.png\n\"Included with the paid Content Subscription.\")",
@@ -503,11 +503,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "ec980a8abad3d7ba44fd5fef1b80ae81",
+            "collectionId": "daa60cc016586d8ef6f24e5eacb32c17",
             "rawModeData": ""
         },
         {
-            "id": "b63a190f90c83ef048787f9f01d91778",
+            "id": "0501c53c5b2ad952a6f0b6b7e6cf70e7",
             "name": "Get Lists List",
             "url": "httpsapi.data.charitynavigator.org\/v2\/Lists\/{ListID}",
             "description": "Retrieve a curated or generated list of organizations, published by Charity\nNavigator. <br\/> ![Content\nSubscription](https:\/\/cdn2.hubspot.net\/hubfs\/597611\/CharityNavigator\/FA-Data-Table-16.png\n\"Included with the paid Content Subscription.\")",
@@ -548,11 +548,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "ec980a8abad3d7ba44fd5fef1b80ae81",
+            "collectionId": "daa60cc016586d8ef6f24e5eacb32c17",
             "rawModeData": ""
         },
         {
-            "id": "ff3db7427b7e8aa41ec871ccb54161c8",
+            "id": "4180f2c0be1b0dc7fdf0544701c9828c",
             "name": "Get Categories",
             "url": "httpsapi.data.charitynavigator.org\/v2\/Categories",
             "description": "Returns metadata for Charity Navigator's classification hierarchy for\ncharitable Organizations. Category is the top-level classifier, and each\ncategory may contain a number of Causes. <br\/> ![Content\nSubscription](https:\/\/cdn2.hubspot.net\/hubfs\/597611\/CharityNavigator\/FA-Data-Table-16.png\n\"Included with the paid Content Subscription.\")",
@@ -586,11 +586,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "ec980a8abad3d7ba44fd5fef1b80ae81",
+            "collectionId": "daa60cc016586d8ef6f24e5eacb32c17",
             "rawModeData": ""
         },
         {
-            "id": "601239e231e9a5ce3291213d423704a3",
+            "id": "4f93878e8188480dbfa664ecd3f536fb",
             "name": "Get Advisory",
             "url": "httpsapi.data.charitynavigator.org\/v2\/Advisory",
             "description": "Retrieve the full set of Charity Navigator advisories for a specified\norganization. An advisory is a cautionary communication from Charity Navigator,\nadvising of unusual events or behavior related to a known organization.",
@@ -638,7 +638,7 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "ec980a8abad3d7ba44fd5fef1b80ae81",
+            "collectionId": "daa60cc016586d8ef6f24e5eacb32c17",
             "rawModeData": ""
         }
     ]
